@@ -7,6 +7,7 @@ An extremely minimal and simple experiment module for machine learning in PyTorc
 
 In addition to abstracting away the training loop, we provide several abstractions to improve the efficiency of machine learning workflows with PyTorch. 
 
+
 ## Example 
 
 To get started, create an experiment child class of `torchplate.experiment.Experiment` and provide several key, experiment-unique items: model, optimizer, and a training set dataloader. Add whatever custom methods you may want to this class. Then starting training! That's it! 
@@ -62,6 +63,13 @@ Epoch 5: 100%|██████████████████████
 Training Loss (epoch 5): 1.0520343957123932
 Finished Training!
 ```
+
+## Installation 
+
+```
+$ pip install torchplate
+```
+
 
 ## Changelog 
 
