@@ -29,7 +29,7 @@ class Experiment(ABC):
         """
         self.model = model 
         self.optimizer = optimizer
-        self.trainloader = self.trainloader
+        self.trainloader = trainloader
 
 
     def train(self, num_epochs):
