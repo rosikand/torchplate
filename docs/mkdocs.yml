@@ -1,0 +1,7 @@
+site_name: torchplate - Documentation
+site_url: https://rosikand.github.io/torchplate
+nav:
+    - Home: index.md
+    - Experiment: experiment.md
+    - Utils: utils.md
+theme: readthedocs

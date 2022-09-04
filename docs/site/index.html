@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" /><link rel="canonical" href="https://rosikand.github.io/torchplate/" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>torchplate - Documentation</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = "/torchplate/";
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> torchplate - Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#example">Example</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#changelog">Changelog</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#001">0.0.1</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="experiment/">Experiment</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="utils/">Utils</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">torchplate - Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="torchplate-minimal-experiment-workflows-in-pytorch"><code>torchplate</code>: Minimal Experiment Workflows in PyTorch</h1>
+<p>(<a href="https://github.com/rosikand/torchplate">Github</a> | <a href="https://pypi.org/project/torchplate">PyPI</a>)</p>
+<p>An extremely minimal and simple experiment module for machine learning in PyTorch. </p>
+<p>In addition to abstracting away the training loop, we provide several abstractions to improve the efficiency of machine learning workflows with PyTorch. </p>
+<h2 id="example">Example</h2>
+<p>To get started, create an experiment child class of <code>torchplate.experiment.Experiment</code> and provide several key, experiment-unique items: model, optimizer, and a training set dataloader. Add whatever custom methods you may want to this class. Then starting training! That's it! </p>
+<pre><code class="language-python">import torchplate
+import data 
+import models
+import torch
+import torch.optim as optim
+import torch.nn as nn
+
+
+class SampleExp(torchplate.experiment.Experiment):
+    def __init__(self): 
+        self.model = models.Net()
+        self.optimizer = optim.Adam(self.model.parameters(), lr=0.001)
+        self.criterion = nn.CrossEntropyLoss()
+        dataset = data.load_set('cifar')
+        # use various torchplate.utils to improve efficiency of common workflows 
+        self.trainloader, self.testloader = torchplate.utils.get_xy_loaders(dataset)
+
+        # inherit from torchplate.experiment.Experiment and pass in
+        # model, optimizer, and dataloader 
+        super().__init__(
+            model = self.model,
+            optimizer = self.optimizer,
+            trainloader = self.trainloader 
+        )
+
+    # provide this abstract method to calculate loss 
+    def evaluate(self, batch):
+        x, y = batch
+        logits = self.model(x)
+        loss_val = self.criterion(logits, y)
+        return loss_val
+
+
+exp = SampleExp()
+exp.train(num_epochs=5)
+</code></pre>
+<p>output: </p>
+<pre><code>Epoch 1: 100%|███████████████████████████████████████████████████████████| 27/27 [00:00&lt;00:00, 293.98it/s]
+Training Loss (epoch 1): 1.3564644632516083
+Epoch 2: 100%|███████████████████████████████████████████████████████████| 27/27 [00:00&lt;00:00, 598.46it/s]
+Training Loss (epoch 2): 1.2066593832439847
+Epoch 3: 100%|███████████████████████████████████████████████████████████| 27/27 [00:00&lt;00:00, 579.40it/s]
+Training Loss (epoch 3): 1.1030386642173484
+Epoch 4: 100%|███████████████████████████████████████████████████████████| 27/27 [00:00&lt;00:00, 563.90it/s]
+Training Loss (epoch 4): 1.0885229706764221
+Epoch 5: 100%|███████████████████████████████████████████████████████████| 27/27 [00:00&lt;00:00, 577.54it/s]
+Training Loss (epoch 5): 1.0520343957123932
+Finished Training!
+</code></pre>
+<h2 id="installation">Installation</h2>
+<pre><code>$ pip install torchplate
+</code></pre>
+<h2 id="changelog">Changelog</h2>
+<h3 id="001">0.0.1</h3>
+<ul>
+<li>First version published. Provides basic data-loading utilities and the base experiment module. </li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="experiment/" class="btn btn-neutral float-right" title="Experiment">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="experiment/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.3.1
+Build Date UTC : 2022-09-04 20:15:26.874551+00:00
+-->

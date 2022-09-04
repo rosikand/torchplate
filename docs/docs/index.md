@@ -1,6 +1,6 @@
 # `torchplate`: Minimal Experiment Workflows in PyTorch 
 
-([Github](https://github.com/rosikand/torchplate) | [PyPI](https://pypi.org/project/torchplate) | [Documentation](https://rosikand.github.io/torchplate/))
+([Github](https://github.com/rosikand/torchplate) | [PyPI](https://pypi.org/project/torchplate))
 
 
 An extremely minimal and simple experiment module for machine learning in PyTorch. 
@@ -76,5 +76,3 @@ $ pip install torchplate
 ### 0.0.1
 
 - First version published. Provides basic data-loading utilities and the base experiment module. 
-
-
