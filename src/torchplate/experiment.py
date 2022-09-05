@@ -18,7 +18,7 @@ class Experiment(ABC):
     method. A sub-experiment has full autonomy to override
     the basic components such as the training loop "train". 
     """
-    def __init__(self, model, optimizer, trainloader, wandb_logger=None):
+    def __init__(self, model, optimizer, trainloader, wandb_logger=None, verbose=False):
         """
         Experiment superclass initializer. Each subclass must provide
         a model, optimizer, and trainloader at the very least. 
@@ -32,6 +32,7 @@ class Experiment(ABC):
         self.optimizer = optimizer
         self.trainloader = trainloader
         self.wandb_logger = wandb_logger
+        self.verbose = verbose
 
 
     def train(self, num_epochs):
@@ -57,7 +58,8 @@ class Experiment(ABC):
             epoch_avg_loss = running_loss/len(self.trainloader)
             if self.wandb_logger is not None:
                 self.wandb_logger.log({"Training loss": epoch_avg_loss})
-            print("Training Loss (epoch " + str(epoch_num) + "):", epoch_avg_loss)
+            if self.verbose:
+                print("Training Loss (epoch " + str(epoch_num) + "):", epoch_avg_loss)
         
         self.model.eval()
         print('Finished Training!')
