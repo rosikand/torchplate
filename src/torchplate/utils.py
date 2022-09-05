@@ -8,6 +8,41 @@ this module.
 
 import torch 
 from torch.utils.data import Dataset
+from abc import ABC, abstractmethod
+
+
+class ModelInterface(ABC):
+    """
+    Abstract class which provides a model
+    interface for torch.nn models. Mainly,
+    this class provides forward_pipeline
+    which sends an input through this pipeline:
+    preprocess --> model --> postprocess. 
+    Users must provide a torch.nn model, preprocess,
+    and postprocess.  
+    """
+    def __init__(self, model):
+        """
+        Provide torch.nn module. 
+        """
+        self.model
+
+
+    @abstractmethod
+    def preprocess(self, inputs):
+        pass
+
+
+    @abstractmethod
+    def postprocess(self, inputs):
+        pass
+
+
+    def forward_pipeline(self, inputs):
+        preprocessed_inputs = self.preprocess(inputs)
+        logits = self.model(preprocessed_inputs)
+        processed_output = self.postprocess(logits)
+        return processed_output
 
 
 class XYDataset(Dataset):
