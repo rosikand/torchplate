@@ -73,6 +73,10 @@ $ pip install torchplate
 
 ## Changelog 
 
+### 0.0.3
+
+- Added verbose option as well as wandb logging 
+
 ### 0.0.2
 - Fixed a polymorphic bug 
 
