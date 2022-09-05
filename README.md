@@ -73,6 +73,9 @@ $ pip install torchplate
 
 ## Changelog 
 
+### 0.0.2
+- Fixed a polymorphic bug 
+
 ### 0.0.1
 
 - First version published. Provides basic data-loading utilities and the base experiment module. 
