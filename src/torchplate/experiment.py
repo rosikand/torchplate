@@ -27,6 +27,9 @@ class Experiment(ABC):
         - model: torch nn.module 
         - optimizer: torch optimizer 
         - trainloader: torch Dataloader to be used for training 
+        Optional:
+        - wandb_logger (wandb.init object): pass in if you want to log to wandb. Default: None. 
+        - verbose (boolean): if true, print out metrics during training. Default: False. 
         """
         self.model = model 
         self.optimizer = optimizer
