@@ -30,7 +30,7 @@ class BaseExp(experiment.Experiment):
             path="https://stanford.edu/~rsikand/assets/datasets/mini_cifar.pkl", 
             DatasetClass=datasets.BaseDataset
             )
-        self.run = wandb.init(project="test", entity="rosikand")
+        #self.run = wandb.init(project="yourproject", entity="yourname")
 
         # inherit from torchplate.experiment.Experiment and pass in
         # model, optimizer, and dataloader 
@@ -38,7 +38,7 @@ class BaseExp(experiment.Experiment):
             model = self.model,
             optimizer = self.optimizer,
             trainloader = self.trainloader,
-            wandb_logger = self.run,
+            wandb_logger = None,
             verbose = True
         )
     
