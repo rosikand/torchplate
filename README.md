@@ -10,7 +10,7 @@ In addition to abstracting away the training loop, we provide several abstractio
 
 ## Example 
 
-To get started, create an experiment child class of `torchplate.experiment.Experiment` and provide several key, experiment-unique items: model, optimizer, and a training set dataloader. Add whatever custom methods you may want to this class. Then starting training! That's it! 
+To get started, create an experiment child class of `torchplate.experiment.Experiment` and provide several key, experiment-unique items: model, optimizer, and a training set dataloader. Then, provide an implementation of the abstract method `evaluate`. This function takes in a batch from the `trainloader` and should return the loss (i.e., implement the forward pass + loss calculation). Add whatever custom methods you may want to this class. Then starting training! That's it! 
 
 ```python
 import torchplate
