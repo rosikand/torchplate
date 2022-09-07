@@ -58,6 +58,6 @@ class BaseExp(experiment.Experiment):
             if pred == y:
                 accuracy_count += 1
         print("Accuracy: ", accuracy_count/len(self.testloader))
-        self.run.finish()
+        #self.run.finish()
 
 
