@@ -73,6 +73,9 @@ $ pip install torchplate
 
 ## Changelog 
 
+### 0.0.4 
+- Several changes: added callbacks, changed verbose default to true, added `ModelInterface` pipeline to `utils`. 
+
 ### 0.0.3
 
 - Added verbose option as well as wandb logging 
