@@ -7,6 +7,11 @@ An extremely minimal and simple experiment module for machine learning in PyTorc
 
 In addition to abstracting away the training loop, we provide several abstractions to improve the efficiency of machine learning workflows with PyTorch. 
 
+## Installation 
+
+```
+$ pip install torchplate
+```
 
 ## Example 
 
@@ -64,11 +69,9 @@ Training Loss (epoch 5): 1.0520343957123932
 Finished Training!
 ```
 
-## Installation 
+### More examples
 
-```
-$ pip install torchplate
-```
+See `examples/cifar` for another minimal example. See `examples/starter` for a full program example. To get started running your own experiments, you can use `examples/starter` as a base. 
 
 
 ## Changelog 
