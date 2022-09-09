@@ -18,7 +18,7 @@ class Experiment(ABC):
     method. A sub-experiment has full autonomy to override
     the basic components such as the training loop "train". 
     """
-    def __init__(self, model, optimizer, trainloader, wandb_logger=None, verbose=False):
+    def __init__(self, model, optimizer, trainloader, wandb_logger=None, verbose=True):
         """
         Experiment superclass initializer. Each subclass must provide
         a model, optimizer, and trainloader at the very least. 
@@ -29,7 +29,7 @@ class Experiment(ABC):
         - trainloader: torch Dataloader to be used for training 
         Optional:
         - wandb_logger (wandb.init object): pass in if you want to log to wandb. Default: None. 
-        - verbose (boolean): if true, print out metrics during training. Default: False. 
+        - verbose (boolean): if true, print out metrics during training. Default: True. 
         """
         self.model = model 
         self.optimizer = optimizer
