@@ -42,30 +42,36 @@ class Experiment(ABC):
         """
         Training loop. 
         """
+        self.on_run_start()
         self.model.train()
         epoch_num = 0
 
-        for epoch in range(num_epochs):  # loop over the dataset num_epochs times 
+        for epoch in range(num_epochs):
             epoch_num += 1
+            self.on_epoch_start()
             running_loss = 0.0
             
             tqdm_loader = tqdm(self.trainloader)
             for batch in tqdm_loader:
                 tqdm_loader.set_description(f"Epoch {epoch_num}")
+                self.on_batch_start()
                 self.optimizer.zero_grad()
                 loss = self.evaluate(batch)
                 loss.backward()
                 self.optimizer.step()
                 running_loss += loss.item() 
+                self.on_batch_end()
 
             epoch_avg_loss = running_loss/len(self.trainloader)
             if self.wandb_logger is not None:
                 self.wandb_logger.log({"Training loss": epoch_avg_loss})
             if self.verbose:
                 print("Training Loss (epoch " + str(epoch_num) + "):", epoch_avg_loss)
+            self.on_epoch_end()
         
         self.model.eval()
         print('Finished Training!')
+        self.on_run_end()
 
 
     @abstractmethod
@@ -82,3 +88,52 @@ class Experiment(ABC):
         - A scalar loss value. 
         """
         pass
+
+
+    def on_batch_start(self):
+        """
+        Callback that can be overriden. Implement whatever you want
+        to happen before each batch iteration. 
+        """
+        pass
+
+
+    def on_batch_end(self):
+        """
+        Callback that can be overriden. Implement whatever you want
+        to happen after each batch iteration. 
+        """
+        pass
+
+
+    def on_epoch_start(self):
+        """
+        Callback that can be overriden. Implement whatever you want
+        to happen before each epoch iteration. 
+        """
+        pass
+
+
+    def on_epoch_end(self):
+        """
+        Callback that can be overriden. Implement whatever you want
+        to happen after each epoch iteration. 
+        """
+        pass
+
+
+    def on_run_start(self):
+        """
+        Callback that can be overriden. Implement whatever you want
+        to happen before each run. 
+        """
+        pass
+
+
+    def on_run_end(self):
+        """
+        Callback that can be overriden. Implement whatever you want
+        to happen after each run. 
+        """
+        pass
+
