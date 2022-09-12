@@ -2,10 +2,18 @@
 
 ([Github](https://github.com/rosikand/torchplate) | [PyPI](https://pypi.org/project/torchplate) | [Documentation](https://rosikand.github.io/torchplate/))
 
-
 An extremely minimal and simple experiment module for machine learning in PyTorch. 
 
 In addition to abstracting away the training loop, we provide several abstractions to improve the efficiency of machine learning workflows with PyTorch. 
+
+
+**Contents**:
+- [Installation](#installation)
+- [Example](#example)
+    - [More examples](#more-examples)
+    - [Starter project](#starter-project)
+- [Changelog](#changelog)
+
 
 ## Installation 
 
@@ -15,7 +23,7 @@ $ pip install torchplate
 
 ## Example 
 
-To get started, create an experiment child class of `torchplate.experiment.Experiment` and provide several key, experiment-unique items: model, optimizer, and a training set dataloader. Then, provide an implementation of the abstract method `evaluate`. This function takes in a batch from the `trainloader` and should return the loss (i.e., implement the forward pass + loss calculation). Add whatever custom methods you may want to this class. Then starting training! That's it! 
+To get started, create a child class of `torchplate.experiment.Experiment` and provide several key, experiment-unique items: model, optimizer, and a training set dataloader. Then, provide an implementation of the abstract method `evaluate`. This function takes in a batch from the `trainloader` and should return the loss (i.e., implement the forward pass + loss calculation). Add whatever custom methods you may want to this class. Then starting training! That's it! 
 
 ```python
 import torchplate
@@ -73,7 +81,7 @@ Finished Training!
 
 See `examples/cifar` for another minimal example. See `examples/starter` for a full program example. To get started running your own experiments, you can use `examples/starter` as a base (or use cookiecutter as shown below). 
 
-#### Starter project 
+### Starter project 
 
 The `starter` branch holds the source for a [cookiecutter](https://github.com/cookiecutter/cookiecutter) project. This allows users to easily create projects from the starter code example by running a simple command. To get started, [install cookiecutter](https://cookiecutter.readthedocs.io/en/stable/installation.html#install-cookiecutter) and then type
 ```
