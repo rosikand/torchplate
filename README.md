@@ -2,7 +2,7 @@
 
 ([Github](https://github.com/rosikand/torchplate) | [PyPI](https://pypi.org/project/torchplate) | [Documentation](https://rosikand.github.io/torchplate/))
 
-An extremely minimal and simple experiment module for machine learning in PyTorch. 
+An extremely minimal and simple experiment module for machine learning in PyTorch (PyTorch + boilerplate = `torchplate`).
 
 In addition to abstracting away the training loop, we provide several abstractions to improve the efficiency of machine learning workflows with PyTorch. 
 
