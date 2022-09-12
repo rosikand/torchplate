@@ -71,7 +71,24 @@ Finished Training!
 
 ### More examples
 
-See `examples/cifar` for another minimal example. See `examples/starter` for a full program example. To get started running your own experiments, you can use `examples/starter` as a base. 
+See `examples/cifar` for another minimal example. See `examples/starter` for a full program example. To get started running your own experiments, you can use `examples/starter` as a base (or use cookiecutter as shown below). 
+
+#### Starter project 
+
+The `starter` branch holds the source for a [cookiecutter](https://github.com/cookiecutter/cookiecutter) project. This allows users to easily create projects from the starter code example by running a simple command. To get started, [install cookiecutter](https://cookiecutter.readthedocs.io/en/stable/installation.html#install-cookiecutter) and then type
+```
+$ cookiecutter https://github.com/rosikand/torchplate.git --checkout starter
+```
+
+which will generate the following structure for you to use as a base for your projects: 
+
+```
+torchplate_starter
+├── datasets.py
+├── experiments.py
+├── models.py
+└── runner.py
+```
 
 
 ## Changelog 
