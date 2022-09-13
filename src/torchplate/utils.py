@@ -8,18 +8,19 @@ this module.
 
 import torch 
 from torch.utils.data import Dataset
-from abc import ABC, abstractmethod
 
 
-class ModelInterface(ABC):
+class BaseModelInterface:
     """
-    Abstract class which provides a model
+    Wrapper class which provides a model
     interface for torch.nn models. Mainly,
-    this class provides forward_pipeline
-    which sends an input through this pipeline:
-    preprocess --> model --> postprocess. 
-    Users must provide a torch.nn model, preprocess,
-    and postprocess.  
+    this class provides the forward pass pipeline
+    function, 'predict' which sends an 
+    input through this pipeline:
+        preprocess --> model --> postprocess. 
+    Users must provide a torch.nn model and can
+    optionally specify preprocess and postprocess
+    functions. 
     """
     def __init__(self, model):
         """
@@ -28,14 +29,12 @@ class ModelInterface(ABC):
         self.model
 
 
-    @abstractmethod
     def preprocess(self, inputs):
-        pass
+        return inputs
 
 
-    @abstractmethod
     def postprocess(self, inputs):
-        pass
+        return inputs
 
 
     def forward_pipeline(self, inputs):
@@ -43,6 +42,16 @@ class ModelInterface(ABC):
         logits = self.model(preprocessed_inputs)
         processed_output = self.postprocess(logits)
         return processed_output
+    
+    
+    def save_weights(self, weight_path):
+        torch.save(self.model.state_dict(), weight_path)
+        print("Model weights saved!")
+
+        
+    def load_weights(self, weight_path):
+        self.model.load_state_dict(torch.load(weight_path))
+        print("weights loaded!")
 
 
 class XYDataset(Dataset):
