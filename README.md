@@ -94,18 +94,19 @@ torchplate_starter
 
 ## Changelog 
 
+### 0.0.5
+- Added model weights loading and saving. 
+
 ### 0.0.4 
 - Several changes: added callbacks, changed verbose default to true, added `ModelInterface` pipeline to `utils`. 
 
 ### 0.0.3
-
 - Added verbose option as well as wandb logging 
 
 ### 0.0.2
 - Fixed a polymorphic bug 
 
 ### 0.0.1
-
 - First version published. Provides basic data-loading utilities and the base experiment module. 
 
 
