@@ -94,6 +94,10 @@ torchplate_starter
 
 ## Changelog 
 
+### 0.0.6
+
+- Fixed bug in model weight saving. 
+
 ### 0.0.5
 - Added model weights loading and saving. 
 
