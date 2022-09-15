@@ -6,6 +6,8 @@ Provides the main module of the package: Experiment.
 
 from abc import ABC, abstractmethod
 import torch 
+import rsbox
+from rsbox import misc
 from tqdm.auto import tqdm
 import wandb 
 
@@ -136,4 +138,25 @@ class Experiment(ABC):
         to happen after each run. 
         """
         pass
-
+    
+    
+    def save_weights(self, save_path=None):
+        """
+        Function to save model weights at 'save_path'. 
+        Arguments:
+        - save_path: path to save the weights. If not given, defaults to current timestamp. 
+        """
+        if save_path is None:
+            save_path = misc.timestamp()
+        torch.save(self.model.state_dict(), save_path)
+        print("Model weights saved at: " + str(save_path))
+        
+        
+    def load_weights(self, weight_path):
+        """
+        Function to load model weights saved at 'weight_path'. 
+        Arguments:
+        - weight_path: path pointing to the saved weights. 
+        """
+        self.model.load_state_dict(torch.load(weight_path))
+        print("Weights loaded!")
