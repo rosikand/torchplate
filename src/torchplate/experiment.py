@@ -145,9 +145,11 @@ class Experiment(ABC):
         Function to save model weights at 'save_path'. 
         Arguments:
         - save_path: path to save the weights. If not given, defaults to current timestamp. 
-        """
+        """ 
         if save_path is None:
-            save_path = misc.timestamp()
+            if not os.path.exists("saved"):
+                os.makedirs("saved")
+            save_path = "saved/" + misc.timestamp() + ".pth"
         torch.save(self.model.state_dict(), save_path)
         print("Model weights saved at: " + str(save_path))
         
