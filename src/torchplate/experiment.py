@@ -6,6 +6,7 @@ Provides the main module of the package: Experiment.
 
 from abc import ABC, abstractmethod
 import torch 
+import os
 import rsbox
 from rsbox import misc
 from tqdm.auto import tqdm
