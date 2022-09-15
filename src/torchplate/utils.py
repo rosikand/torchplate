@@ -8,6 +8,9 @@ this module.
 
 import torch 
 from torch.utils.data import Dataset
+import os
+import rsbox 
+from rsbox import misc
 
 
 class BaseModelInterface:
@@ -28,14 +31,11 @@ class BaseModelInterface:
         """
         self.model
 
-
     def preprocess(self, inputs):
         return inputs
 
-
     def postprocess(self, inputs):
         return inputs
-
 
     def forward_pipeline(self, inputs):
         preprocessed_inputs = self.preprocess(inputs)
@@ -43,11 +43,13 @@ class BaseModelInterface:
         processed_output = self.postprocess(logits)
         return processed_output
     
-    
-    def save_weights(self, weight_path):
-        torch.save(self.model.state_dict(), weight_path)
-        print("Model weights saved!")
-
+    def save_weights(self, save_path=None):
+        if save_path is None:
+            if not os.path.exists("saved"):
+                os.makedirs("saved")
+            save_path = "saved/" + misc.timestamp() + ".pth"
+        torch.save(self.model.state_dict(), save_path)
+        print("Model weights saved at: " + str(save_path))
         
     def load_weights(self, weight_path):
         self.model.load_state_dict(torch.load(weight_path))
