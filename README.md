@@ -1,4 +1,4 @@
-# 🍽 `torchplate`: Minimal Experiment Workflows in PyTorch 
+# `torchplate`: Minimal Experiment Workflows in PyTorch 
 
 ([Github](https://github.com/rosikand/torchplate) | [PyPI](https://pypi.org/project/torchplate) | [Documentation](https://rosikand.github.io/torchplate/))
 
