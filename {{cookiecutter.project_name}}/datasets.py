@@ -30,9 +30,9 @@ class BaseDataset(Dataset):
         return len(self.data_distribution)
 
 
-def get_dataloaders(path, DatasetClass):
+def get_dataloaders(path):
 	data_distribution = cp.load(urlopen(path))
-	torch_set = DatasetClass(data_distribution)
+	torch_set = BaseDataset(data_distribution)
 	train_dataset, test_dataset = tp_utils.split_dataset(torch_set, ratio=0.9)
 	trainloader = torch.utils.data.DataLoader(train_dataset)
 	testloader = torch.utils.data.DataLoader(test_dataset)

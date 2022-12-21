@@ -13,6 +13,7 @@ import pdb
 import experiments
 
 
+
 def main(args):
     if args.config is None:
         config_class = 'BaseConfig'
@@ -24,9 +25,7 @@ def main(args):
     )
 
 	# train the model
-    exp.test() 
-    exp.train(num_epochs=15)
-    exp.test()
+    exp.train()
 
 
 

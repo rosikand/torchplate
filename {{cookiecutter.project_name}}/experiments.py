@@ -26,14 +26,9 @@ class BaseExp(experiment.Experiment):
         self.model = models.CifarMLP()
         self.optimizer = optim.Adam(self.model.parameters(), lr=0.001)
         self.criterion = nn.CrossEntropyLoss()
-        self.trainloader, self.testloader = datasets.get_dataloaders(
-            path="https://stanford.edu/~rsikand/assets/datasets/mini_cifar.pkl", 
-            DatasetClass=datasets.BaseDataset
-            )
-        #self.run = wandb.init(project="yourproject", entity="yourname")
+        self.trainloader, self.testloader = datasets.get_dataloaders(path="https://stanford.edu/~rsikand/assets/datasets/mini_cifar.pkl")
+        
 
-        # inherit from torchplate.experiment.Experiment and pass in
-        # model, optimizer, and dataloader 
         super().__init__(
             model = self.model,
             optimizer = self.optimizer,
@@ -44,20 +39,10 @@ class BaseExp(experiment.Experiment):
     
     # provide this abstract method to calculate loss 
     def evaluate(self, batch):
-        x, y = batch
-        logits = self.model(x)
-        loss_val = self.criterion(logits, y)
-        return loss_val
+        pass 
+
 
     def test(self):
-        accuracy_count = 0
-        for x, y in self.testloader:
-            logits = self.model(x)
-            pred = torch.argmax(F.softmax(logits, dim=1)).item()
-            print(f"Prediction: {pred}, True: {y.item()}")
-            if pred == y:
-                accuracy_count += 1
-        print("Accuracy: ", accuracy_count/len(self.testloader))
-        #self.run.finish()
+        pass
 
 
