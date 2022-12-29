@@ -53,7 +53,7 @@ class SampleExp(torchplate.experiment.Experiment):
 
 
 exp = SampleExp()
-exp.train(num_epochs=5)
+exp.train(num_epochs=10, gradient_accumulate_every_n_batches=4, display_batch_loss=False)
 ```
 output: 
 ```
@@ -93,6 +93,10 @@ torchplate_starter
 
 
 ## Changelog 
+
+### 0.0.7
+
+- Largest change to date. New features: gradient accumulation, save weights every $n$ epochs, display batch loss, metrics, metrics interfaced with `train`. 
 
 ### 0.0.6
 
