@@ -1,7 +1,22 @@
-site_name: torchplate - Documentation
+site_name: torchplate
 site_url: https://rosikand.github.io/torchplate
 nav:
     - Home: index.md
-    - Experiment: experiment.md
-    - Utils: utils.md
-theme: readthedocs
+    - Changelog: changelog.md
+    # - Modules:
+    #     - Experiment: experiment.md
+    #     - Utils: utils.md
+    #     - Metrics: metrics.md
+    - Examples:
+        - Segmentation: examples/segmentation.md 
+    - API:
+        - Experiment: api/experiment.md
+        - Metrics: api/metrics.md
+        - Utils: api/utils.md
+theme:
+  name: 'material'
+  palette:
+    primary: 'blue grey'
+plugins:
+    - mkdocstrings
+    - search
