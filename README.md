@@ -116,6 +116,11 @@ torchplate_starter
 
 ## Changelog 
 
+### 0.0.8
+
+- Fixed `metrics` import bug. 
+
+
 ### 0.0.7
 
 - Largest change to date. New features: gradient accumulation, save weights every $n$ epochs, display batch loss, metrics, metrics interfaced with `train`. 

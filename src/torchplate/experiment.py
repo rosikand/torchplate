@@ -11,7 +11,7 @@ import rsbox
 from rsbox import misc
 from tqdm.auto import tqdm
 import wandb 
-import metrics
+from torchplate import metrics
 
 
 class Experiment(ABC):
