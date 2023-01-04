@@ -2,17 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://rosikand.github.io/torchplate/</loc>
-         <lastmod>2022-09-04</lastmod>
+         <lastmod>2023-01-04</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://rosikand.github.io/torchplate/changelog/</loc>
+         <lastmod>2023-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rosikand.github.io/torchplate/experiment/</loc>
-         <lastmod>2022-09-04</lastmod>
+         <lastmod>2023-01-04</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://rosikand.github.io/torchplate/metrics/</loc>
+         <lastmod>2023-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rosikand.github.io/torchplate/utils/</loc>
-         <lastmod>2022-09-04</lastmod>
+         <lastmod>2023-01-04</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://rosikand.github.io/torchplate/api/experiment/</loc>
+         <lastmod>2023-01-04</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://rosikand.github.io/torchplate/api/metrics/</loc>
+         <lastmod>2023-01-04</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://rosikand.github.io/torchplate/api/utils/</loc>
+         <lastmod>2023-01-04</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://rosikand.github.io/torchplate/examples/segmentation/</loc>
+         <lastmod>2023-01-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
