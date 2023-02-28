@@ -2,10 +2,14 @@
 
 # Changelog 
 
+### 0.0.9
+
+- Fixed bug in accuracy metric. 
+
+
 ### 0.0.8
 
 - Fixed `metrics` import bug. 
-
 
 ### 0.0.7
 

@@ -38,7 +38,9 @@ class Accuracy(MeanMetric):
     """
 
     def update(self, logits, labels):
-        return calculate_accuracy(logits, labels)
+        acc = calculate_accuracy(logits, labels)
+        self.vals.append(acc)
+
     
 
 class MeanMetricCustom(ABC, MeanMetric):
