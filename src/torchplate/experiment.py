@@ -134,7 +134,8 @@ class Experiment(ABC):
                 if eval_returns_loss_only:
                     self.wandb_logger.log({"Training loss": epoch_avg_loss})
                 else:
-                    self.wandb_logger.log(metrics_)
+                    log_dict = {key: value.get() for key, value in metrics_.items()}
+                    self.wandb_logger.log(log_dict)
             if self.verbose:
                 if eval_returns_loss_only:
                     print("Training Loss (epoch " + str(self.epoch_num) + "):", epoch_avg_loss)

@@ -2,6 +2,10 @@
 
 # Changelog 
 
+### 0.0.10
+
+- Fixed wandb interface bug 
+
 ### 0.0.9
 
 - Fixed bug in accuracy metric. 
